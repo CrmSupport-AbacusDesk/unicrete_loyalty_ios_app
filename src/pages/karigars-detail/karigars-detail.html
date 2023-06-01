@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'karigars Site Gallery'|translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- <div class="Product" *ngFor="let list of karImage; let i=index">
+        <div ion-item class="bg-product">
+            <div class="thumbnail">
+                <img [src]="list.image_name">
+            </div>
+        </div>
+    </div> -->
+    <!-- <div>
+        <P *ngIf="sendEmail=='true'">Email is Successfully Send</P>
+    </div> -->
+    
+    
+    <div class="home-grid transparent multiple-images">        
+        <ul>  
+            <li *ngFor="let list of karImage; let i=index" (click)="goOnGalleryImage(list.id,list.image_name)">
+                <div class="img-view">
+                    <img [src]="upload_url+list.image_name">
+                    <!-- <img src="assets/imgs/home-icon/profile.png"> -->
+                </div>
+            </li> 
+        </ul>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <button ion-button class="cs-btn no-margin" (click)="sendEnquiry()">{{'Click Here For Send Enquiry'|translate}}</button>
+</ion-footer>

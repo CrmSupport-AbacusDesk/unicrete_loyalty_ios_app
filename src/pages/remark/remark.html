@@ -1,0 +1,30 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>RemarkPage</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content padding style="background-color: rgb(126, 117, 117);">
+  <div class="main-modal">
+    <div class="modal-box">
+      <h2 class="mb10">{{'Remark'|translate}}</h2>
+      
+      <div class="cs-form">
+        <ion-list>
+          <ion-item class="cs-input h100">
+            <!-- <ion-label floating>Enter Remark</ion-label> -->
+            <ion-textarea style="padding: 10px;" type="text" placeholder="Enter Remark" (keyup)="enterRemark($event.target.value)"></ion-textarea>
+          </ion-item>
+        </ion-list>
+      </div>
+      
+      <div class="modal-cls" (click)="gotoPreviousPage()">
+        <i class="material-icons">cancel</i>
+      </div>
+      
+      <div class="model-btn mt15">
+        <button (click)="saveRemark()">{{'Send'|translate}}</button>
+      </div>
+    </div>
+  </div>	
+</ion-content>

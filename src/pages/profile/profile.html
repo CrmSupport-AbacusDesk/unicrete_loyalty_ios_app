@@ -1,0 +1,168 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Profile' | translate}}</ion-title>
+        <div class="header-icons">
+            <button ion-button class="cs-hdr-icons mr16" (click)="logout()">
+                <i class="material-icons">power_settings_new</i>
+            </button>
+        </div>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="main-backgroung">
+    <div class="pr-after">
+        <div class="profile-detail">
+            <div class="pr-align">
+                <div class="pr-circle">
+                    <img src="assets/imgs/man.svg" *ngIf="karigar_detail.profile ==''">
+                    <img [src]="karigar_detail.profile" *ngIf="karigar_detail.profile" (click)="viewProfiePic()">
+                    <label> 
+                        <i class="material-icons" (click)="openeditprofile()">camera_alt</i>
+                    </label>
+                </div>
+                <div class="pr-tags {{karigar_detail.status}}">
+                    <button class="edit_profile" (click)="updateProfile()"> <i class="material-icons">edit</i></button>
+                    <h2>{{!karigar_detail.first_name ? 'N/A' : karigar_detail.first_name |titlecase}} {{karigar_detail.last_name |titlecase}}</h2>
+                    <div class="left-right mt10">
+                        <i class="material-icons" *ngIf="karigar_detail.status =='Verified'">check_circle</i>
+                        <i class="material-icons" *ngIf="karigar_detail.status =='Pending'">hourglass_full</i>
+                        <i class="material-icons" *ngIf="karigar_detail.status =='Suspect'">info</i>
+                        <i class="material-icons" *ngIf="karigar_detail.status =='Reject'">cancel</i>
+                        <p>{{karigar_detail.status=='Pending'? 'Pending For Verification':karigar_detail.status}}</p>
+                    </div>
+                </div>
+            </div>
+                <div class="deflex mt10">
+                    <ul>
+                        <li class="wp100 bdr-bottom" *ngIf="karigar_detail.user_type!=1">
+                            <p>{{'Company Name' | translate}}</p>
+                            <h1>{{karigar_detail.company_name |titlecase}}</h1>
+                        </li>
+                        <li>
+                            <p>{{'Mobile No' | translate}}.</p>
+                            <h1><a href="tel:{{karigar_detail.mobile_no}}">+91 {{karigar_detail.mobile_no ? karigar_detail.mobile_no : 'N/A'}}</a> </h1>
+                        </li>
+                        <li >
+                            <p>{{'Date of Birth' | translate}}</p>
+                            <h1>{{(karigar_detail.dob !='') ? (karigar_detail.dob| date:'d MMM,y'):('N/A')}} </h1>
+                        </li>
+                        <li class="bdr-top wp100" *ngIf="karigar_detail.email">
+                            <p>{{'Email ID' | translate}}</p>
+                            <h1>{{karigar_detail.email}}
+                            </h1>
+                        </li>
+                        <li class="bdr-top wp100">
+                            <p>{{'Address' | translate}}</p>
+                            <h1>{{karigar_detail.address |titlecase}} {{!karigar_detail.state ? 'N/A' :karigar_detail.state |titlecase}} {{!karigar_detail.district ? 'N/A' : ', '+karigar_detail.district |titlecase}} {{!karigar_detail.city ? 'N/A' : ', '+karigar_detail.city
+                                |titlecase}}
+                            </h1>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="heading line mt32">
+            <p>{{'Document Information' | translate}}</p>
+        </div>
+        <div class="adhar">
+            <img src="{{karigar_detail.document_image ? karigar_detail.document_image : 'assets/imgs/adhar.png'}}">
+            <img src="{{karigar_detail.document_image_back ? karigar_detail.document_image_back : 'assets/imgs/adhar.png'}}" *ngIf="karigar_detail.document_type=='Aadhaar Card'">
+            <p>{{karigar_detail.document_type}}</p>
+            <h1>{{karigar_detail.document_no}}</h1>
+        </div>
+
+
+        <div class="heading line mt32">
+            <p>{{'Pan Card Information' | translate}}</p>
+        </div>
+        <div class="adhar">
+            <img src="{{karigar_detail.pan_img ? karigar_detail.pan_img : 'assets/imgs/adhar.png'}}">
+            <p>{{'Pan Card Number' | translate}}</p>
+            <h1>{{karigar_detail.pan_no}}</h1>
+        </div>
+        
+        <div class="heading line mt18">
+            <p>{{'Dealer Information' | translate}}</p>
+        </div>
+        <div class="data">
+            <table>
+                <tr>
+                    <td>{{'Counter Name' | translate}}</td>
+                    <th>{{karigar_detail.dealer_counter_name}}</th>
+                </tr>
+                <tr>
+                    <td>{{'Contact Person' | translate}}</td>
+                    <th>{{karigar_detail.dealer_contact_person}}</th>
+                </tr>
+                <tr>
+                    <td>{{'Mobile No' | translate}}.</td>
+                    <th>{{karigar_detail.dealer_mobile}}</th>
+                </tr>
+                
+                
+            </table>     
+        </div>
+        
+        <div class="heading line mt18">
+            <p>{{'Bank Information' | translate}}</p>
+            
+        </div>
+        
+        <div class="data">
+            <table>
+                <tr>
+                    <td class="w150">{{'Account Holder Name' | translate}}</td>
+                    <th>{{karigar_detail.account_holder_name}}</th>
+                </tr>
+                <tr>
+                    <td>{{'Bank Name' | translate}}</td>
+                    <th>{{karigar_detail.bank_name}}</th>
+                </tr>
+                <tr>
+                    <td>{{'Account No.' | translate}}</td>
+                    <th>{{karigar_detail.account_number}}</th>
+                </tr>
+                <tr>
+                    <td>{{'IFSC Code' | translate}}</td>
+                    <th>{{karigar_detail.ifsc_code}}</th>
+                </tr>
+                
+                <tr *ngIf="karigar_detail.cheque_image != ''">
+                    <td colspan="2">
+                        <img src="{{karigar_detail.cheque_image}}" (click)="viewImage(karigar_detail.cheque_image)">
+                    </td>
+                </tr>
+                
+            </table>     
+        </div>
+        
+        
+        
+        
+        
+        
+        <div class="heading line mt16" *ngIf="karigar_detail.referral_code" (click)="share_code()">
+            <p>{{'Referral Code Information' | translate}}</p>
+            <div class="little-edit">
+                <a><i class="material-icons">share</i></a>
+            </div>
+        </div>
+        <div class="pr-after" (click)="share_code()" *ngIf="karigar_detail.referral_code">
+            <div class="profile-detail bdr-none p0 mb9">
+                <div class="deflex m0">
+                    <ul>
+                        <li class="refcode">
+                            <p>{{'Referral Code' | translate}}</p>
+                            <h1>{{karigar_detail.referral_code ? karigar_detail.referral_code : 'N/A'}}</h1>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="pl16 pr16 mb24" *ngIf="appVersion.ios_version != version">
+            <button class="capitalize" (click)="deleteAccount()" ion-button color="secondary" block round>Permanent Delete Account</button>
+        </div>
+        
+    </ion-content>

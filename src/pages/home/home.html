@@ -1,0 +1,252 @@
+
+<ion-header  no-border class="af-none">
+    <ion-toolbar class="ios-coustom-height">
+        <ion-title class="coustom-header-ios">
+            <div class="company-logo">
+                <img src="assets/imgs/logo.png">
+            </div>
+        </ion-title>
+        
+        <!-- <ion-buttons end>
+            <button ion-button icon-only  (click)="gotoNotification()">
+                <ion-icon name="notifications" color="secondary"></ion-icon>
+                <span *ngIf="notify_cn > 0" class="custom-point notification-count">{{notify_cn}}</span>
+            </button>
+        </ion-buttons> -->
+        
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="{{'Pull to refresh' | translate}}" refreshingSpinner="circles" refreshingText="{{'Refreshing...'| translate}}">
+        </ion-refresher-content>
+    </ion-refresher>
+
+
+    
+    <!-- *ngIf="appbanner.length == 0 "  -->
+    <ion-slides >
+        <ion-slide *ngFor="let row of appbanner">
+            <img src="{{uploadUrl+row.banner}}">
+        </ion-slide>
+    </ion-slides>
+    
+    
+    
+    
+
+    
+    <div class="home-grid" [ngClass]="{'list-view': active}">        
+        <div class="pr-grid">
+            <div class="le-ft" (click)="viewProfiePic()">
+                <!-- <i class="material-icons">person</i> -->
+                <img src="{{karigar_detail.profile}}">
+            </div>
+            <div class="ri-ght">
+                <div class="align-ri">
+                    <h1>{{karigar_detail.first_name | titlecase}} {{karigar_detail.last_name | titlecase}}</h1>
+                    <p>{{karigar_detail.city | titlecase}}
+                        <span *ngIf="karigar_detail.status =='Pending'" class="pending">
+                            <i class="material-icons" >hourglass_full</i>{{'Pending' | translate}}
+                        </span>
+                        <span *ngIf="karigar_detail.status =='Verified'" class="verified">
+                            <i class="material-icons" >check_circle</i>{{'Verified' | translate}}
+                        </span>
+                        <span *ngIf="karigar_detail.status =='Suspect'" class="suspect">
+                            <i class="material-icons" >info</i>{{'Suspected' | translate}}
+                        </span>
+                        <span *ngIf="karigar_detail.status =='Reject'" class="reject">
+                            <i class="material-icons" >cancel</i>{{'Rejected' | translate}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="share-app-btn">
+                <button class="grid-indication" [ngClass]="{'active': active}" (click)="active =! active;"><i class="material-icons">drag_indicator</i></button>
+            </div>
+        </div>
+        
+        <div class="count-info">
+            <div class="left-count">
+                <p>{{'LAST 7 DAYS' | translate}}</p>
+                <h1>{{last_point}}</h1>
+                <p>{{'POINTS' | translate}}</p>
+            </div>
+            <div class="left-count" (click)="update_lang()">
+                <p>{{'TOTAL' | translate}}</p>
+                <h1>{{total_balance_point}}</h1>
+                <p>{{'POINTS' | translate}}</p>
+            </div>
+        </div>
+        
+        <ul>  
+            <li (click)="viewProfie()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/profile.png">
+                </div>
+                <p>{{'My Profile' | translate}}</p>
+            </li>          
+            <li (click)="gotoChangeLang()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/language_icon.svg">
+                </div>
+                <p>{{'Change Language' | translate}}</p>
+            </li>
+            <li (click)="goOnOffersListPage()" *ngIf="karigar_detail.user_type!='3'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/offer.svg">
+                </div>
+                <p>{{'Offers' | translate}}</p>
+            </li>
+            <li (click)="gotoNotification()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/notify.svg">
+                    <span *ngIf="notify_cn" class="custom-point notification-count">{{notify_cn}}</span>
+                </div>
+                <p>{{'Notification' | translate}}</p>
+            </li>
+            <li  (click)="scan()" *ngIf="karigar_detail.user_type!='3' && karigar_detail.status =='Verified'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/scane.svg" >
+                </div>
+                <p>{{'Scan' | translate}}</p>
+            </li>
+            
+            <li (click)="EnterCouponCode()" *ngIf="karigar_detail.user_type!=3 && karigar_detail.status =='Verified'">
+                <div class="img-view">
+                    <img src="assets/imgs/scan.svg">
+                </div>
+                <p>{{'Enter Coupon Code' | translate}}</p>
+            </li>
+            
+            <li (click)="goOnPointeListPage()"  *ngIf="karigar_detail.user_type!='3'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/payment.svg">
+                </div>
+                <p>{{'Scan History' | translate}}</p>
+            </li>
+            <!-- <li (click)="viewDetail()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/gift-point.svg">
+                </div>
+                <p>{{'Advance Point Detail' | translate}}</p>
+            </li> -->
+            <li (click)="goOnGiftGallary()" *ngIf="karigar_detail.user_type!='3'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/gift.svg">
+                </div>
+                <p>{{'Gift Gallery' | translate}}</p>
+            </li>
+            <li (click)="goOnGiftListPage()" *ngIf="karigar_detail.user_type!='3'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/wallet.svg">
+                </div>
+                <p>{{'Redeem My Points' | translate}}</p>
+            </li>
+            <li (click)="gotoHistory()" *ngIf="karigar_detail.user_type!='3'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/history.svg">
+                </div>
+                <p>{{'Gift Tracker' | translate}}</p>
+            </li>
+            <!-- <li (click)="goOnProductsPage()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/product.svg">
+                </div>
+                <p>{{'Digital catalogues' | translate}}</p>
+            </li> -->
+            <li (click)="goOnDigitallist()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/product.svg">
+                </div>
+                <p>{{'Digital catalogues' | translate}}</p>
+            </li>
+            <!-- <li (click)="share()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/gift-new.svg">
+                    <span class="custom-point">₹ {{sharepoint}}</span>
+                </div>
+                <p>{{'Share App' | translate}}</p>
+            </li> -->
+            <li (click)="share()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/gift-new.svg">
+                    <span class="custom-point">{{sharepoint}}</span>
+                </div>
+                <p>{{'Share App' | translate}}</p>
+            </li>
+            <!-- <li (click)="goOnFurniturePage()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/furniture.svg">
+                </div>
+                <p>{{'Design Ideas' | translate}}</p>
+            </li> -->
+            <!-- <li (click)="goOnWorkingSitePage()" *ngIf="karigar_detail.user_type!='3'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/pics.svg">
+                </div>
+                <p>{{'Site Pics' | translate}}</p>
+            </li> -->
+            <!-- <li (click)="goOnKarigarsPage()" *ngIf="karigar_detail.user_type=='3'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/mechanic.svg">
+                </div>
+                <p>{{'Karigars' | translate}}</p>
+            </li> -->
+            <li (click)="goOnFeedbackPage()" *ngIf="karigar_detail.user_type!='3'">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/feedback.svg">
+                </div>
+                <p>{{'Chat with us' | translate}}</p>
+            </li>
+            <li (click)="goOnVideoPage()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/video-call.svg">
+                </div>
+                <p>{{'Videos' | translate}}</p>
+            </li>
+            <!-- <li (click)="goOnNewsPage()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/news.svg">
+                </div>
+                <p>{{'Latest News' | translate}}</p>
+            </li> -->
+            <li (click)="goOnfaqPage()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/faq.svg">
+                </div>
+                <p>{{'FAQ' | translate}}</p>
+            </li>
+            <li (click)="goOnContactPage()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/contact.svg">
+                </div>
+                <p>{{'Contact Us' | translate}}</p>
+            </li>
+            
+            <li (click)="goOnAdvanceTextPage()">
+                <div class="img-view">
+                    <img src="assets/imgs/home-icon/company.svg">
+                </div>
+                <p>{{'About Us' | translate}}</p>
+            </li> 
+            
+        </ul>
+        <!-- <div class="radio-fixed">
+            <div class="heading line mt1">
+                <p>{{'Change Language' | translate}}</p>
+            </div>
+            <div class="radio-section">
+                <ion-list class="choose" radio-group name="language" [(ngModel)]="karigar_detail.language" > 
+                    <ion-item *ngFor="let row of language">
+                        <ion-radio (click)="update_lang()" checked="{{row.prefix == karigar_detail.language}}" value="{{row.prefix}}"></ion-radio>
+                        <ion-label>{{karigar_detail.language != 'en' ? row.hin_language_name : row.language_name}}</ion-label>
+                    </ion-item>
+                </ion-list>
+            </div> 
+        </div> -->
+    </div>
+    
+</ion-content>

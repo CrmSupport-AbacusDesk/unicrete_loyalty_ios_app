@@ -1,0 +1,42 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Categories' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="Product" *ngFor="let list of prod_cat_list; let i=index">
+        <div ion-item class="bg-product" (click)="goOnProductDetailPage(list.id)">
+            <div class="thumbnail">
+                <ion-slides class="slide" pager autoplay="1000" speed="1000" loop="true" *ngIf="list.image && list.image.length" >
+                    <ion-slide *ngFor="let image of list.image; let i=index">
+                        <img [src]="uploadUrl+image.image_name">
+                    </ion-slide>
+                </ion-slides>
+                <ion-slides class="slide"  *ngIf="list.image && list.image.length ==0" >
+                    <ion-slide>
+                        <img src="assets/imgs/default-image.png">
+                    </ion-slide>
+                </ion-slides>
+            </div>
+            <div class="errow height-as">
+                <!-- For Hindi -->
+                <!-- {{lang !='en' ? list.hin_category_name : list.category_name |titlecase}} -->
+                <p >{{list.category_name |titlecase}}</p>
+                <i  (click)="goOnProductDetailPage(list.id)" class="material-icons">trending_flat</i>
+                
+                <p class="view-btn" *ngIf="list.description" (click)="view_description(lang !='en' ? list.hin_description : list.description, 'category description')">{{'View Description' | translate}}</p>
+            </div>
+        </div>
+    </div>
+    
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+        <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="{{'Loading more data...' | translate}}">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+<div class="h30"></div>
+</ion-content>
+

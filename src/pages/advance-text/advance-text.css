@@ -1,0 +1,31 @@
+page-advance-text .about-content {
+  padding: 16px;
+}
+
+page-advance-text .about-content h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px !important;
+}
+
+page-advance-text .about-content p {
+  font-size: 12px;
+  line-height: 20px;
+  text-align: justify;
+  margin-bottom: 10px !important;
+}
+
+page-advance-text .about-content ul {
+  margin-left: 30px;
+}
+
+page-advance-text .about-content ul li {
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+page-advance-text .about-content ul li:last-child {
+  margin-bottom: 0px;
+}
+/*# sourceMappingURL=advance-text.css.map */

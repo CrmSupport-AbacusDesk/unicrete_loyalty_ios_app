@@ -1,0 +1,51 @@
+
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{'About Us' | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	
+	<div style="padding: 16px; text-align: center;">
+		<img [src]="profile_data.profile_banner" alt="" style="height: 120px;">
+	</div>
+	
+	<div class="policy-text" (click)="presentAboutModal()" padding [innerHTML]="profile_data.about">
+		
+	</div>
+	
+	<!-- <div class="about-content">
+		<h2>Company Profile</h2>
+		<p>
+			Incorporated in the year 1987, Vidya Ply & Board Pvt. Ltd is one of the leading manufacturers a of panel products that stand high in terms of durability and finish. Known for quality rich plywood variants, we have a superior infrastructure that is equipped with new age technology and cutting edge facilities. <br>
+			
+			The wealth of expertise gained for more than two decades of manufacturing wood products, coupled with an unwavering commitment to excellence have always put our products on top.<br>
+			
+			Strong commitment and emphasis to get " better than the best" plywood has driven the company to invest in Research and Technology consistently. As a result "BSC Paints" has established itself as a one of the finest and strongest brand in the Plywood industry.<br>
+			
+			It bears the ISI marks which serves as a benchmark in terms of quality, reliability, durability aesthetics and customer satisfaction.
+		</p>
+
+		<h2>Our Mission</h2>
+		<p>
+			Growth has allowed us to expand our offering of products. This growth seemed to stem from the highly successful strategy and vision, both individually and corporately. It's great to see people enjoy deriving pleasure from our products. <br>
+
+			Vidya Ply and Board is committed to strengthen its leading position in the Indian Plywood Industry by following the statutory and regulatory standards related to products and by adopting latest available technology, involving competent employees, focusing on quality consciousness and cost competitiveness, thus enhancing customer satisfaction through continual improvement.<br>
+
+			Our products enable people to relax, have a good time, and enjoy. From the moment they buy, they are touched by an unforgettable experience."
+
+		</p>
+
+		<h2>Our Quality</h2>
+		<ul>
+			<li>Manufactured by India's best machineries in supervision of wood experts.</li>
+			<li>Products are treated with unique "Hot & cold Diffusing Technology" to make safe against termite and borer.</li>
+			<li>Maintains highest quality standards by only using the best available raw materials that are processed in house.</li>
+			<li>100% selected, treated and seasoned timber is used in the manufacturing of Block Boards</li>
+			<li>The Resins are produced in a modern Resin Plant supervised by a team of senior chemists.</li>
+			<li>Microprocessor controlled automatic wide belt Sanding Machine ensures perfect thickness & imparts ultimate smoothness to the products.</li>
+		</ul>
+	</div> -->
+	
+</ion-content>
